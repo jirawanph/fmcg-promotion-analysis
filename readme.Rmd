@@ -1,0 +1,51 @@
+# 📦 FMCG Promotion Effectiveness Analysis
+
+This project analyzes a retail dataset to explore how product categories and discounts affect profit. The goal is to uncover whether high discounts hurt profitability and which product lines are most efficient.
+
+---
+
+## 📊 Business Questions
+
+1. Which sub-categories are most/least profitable?
+2. How do discounts influence profit margin?
+3. Are there patterns that could help reduce unnecessary discounting?
+
+---
+
+## ✅ Key Steps
+
+- Cleaned and prepared the Superstore dataset (999 rows)
+- Engineered metrics: profit margin, average discount
+- Grouped data by sub-category for financial performance
+- Visualized profit margin and discount trends
+
+---
+
+## 🔍 Key Insights
+
+- Sub-categories like **Copiers** and **Accessories** have strong margins, while **Tables** show negative profitability.
+- **Deep discounts (≥ 40%)** often lead to **loss-making transactions**.
+- Many profitable transactions occur at **0–10% discounts**, suggesting opportunities to scale back promotions on resilient items.
+
+---
+
+## 🛠 Tools Used
+
+- **Language**: R
+- **Libraries**: dplyr, ggplot2, lubridate, readr, scales
+- **Format**: R Markdown (`.Rmd`) → HTML
+
+---
+
+## 📁 Files
+
+- `fmcg_discount_profit_eda.Rmd` – full analysis notebook
+- `fmcg_discount_profit_eda.html` – exported report
+- `README.md` – project overview
+
+---
+
+## 🚀 Next Steps
+
+- Expand this project with predictive modeling in Python (e.g., regression or classification)
+- Build a dashboard version in Power BI or Looker Studio

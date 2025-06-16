@@ -1,0 +1,88 @@
+---
+title: "FMCG Promotion Effectiveness Analysis"
+author: "Jirawan Phromtawepong"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+    number_sections: true
+    theme: flatly
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(scales)
+library(lubridate)
+```
+
+# 📦 Dataset Overview
+
+```{r load-data}
+Superstore <- read_csv("Sample - Superstore.csv")
+
+# Fix column names if needed
+glimpse(Superstore)
+```
+
+# 🧼 Data Cleaning
+
+```{r clean-data}
+# Convert Order Date to proper date
+Superstore$`Order Date` <- mdy(Superstore$`Order Date`)
+
+# Drop unnecessary columns (optional)
+Superstore <- Superstore %>%
+  select(-`Row ID`, -`Postal Code`)
+
+# Confirm structure
+glimpse(Superstore)
+```
+
+# 📊 Sub-Category Performance Summary
+
+```{r summary-subcat}
+summary_by_subcat <- Superstore %>%
+  group_by(`Sub-Category`) %>%
+  summarise(
+    Total_Sales = sum(Sales),
+    Total_Profit = sum(Profit),
+    Avg_Discount = mean(Discount),
+    Profit_Margin = sum(Profit) / sum(Sales)
+  ) %>%
+  arrange(desc(Total_Sales))
+
+summary_by_subcat
+```
+
+# 📈 Profit Margin by Sub-Category
+
+```{r profit-margin-barplot}
+ggplot(summary_by_subcat, aes(x = reorder(`Sub-Category`, Profit_Margin), y = Profit_Margin)) +
+  geom_col(fill = "steelblue") +
+  coord_flip() +
+  labs(title = "Profit Margin by Sub-Category",
+       x = "Sub-Category",
+       y = "Profit Margin") +
+  scale_y_continuous(labels = percent_format(accuracy = 1))
+```
+
+# 📉 Discount vs Profit
+
+```{r discount-vs-profit}
+ggplot(Superstore, aes(x = Discount, y = Profit)) +
+  geom_point(alpha = 0.4, color = "tomato") +
+  geom_smooth(method = "lm", se = FALSE, color = "steelblue") +
+  labs(title = "Discount vs Profit",
+       x = "Discount",
+       y = "Profit")
+```
+
+# 🔍 Insight Summary
+
+- Sub-categories like **Copiers** and **Accessories** have strong margins, while **Tables** show negative profitability.
+- **Deep discounts (≥ 40%)** often lead to **loss-making transactions**.
+- Many profitable transactions occur at **0–10% discounts**, suggesting opportunities to scale back promotions on resilient items.
