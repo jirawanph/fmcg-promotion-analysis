@@ -1,3 +1,5 @@
+https://jirawanph.github.io/fmcg-promotion-analysis/
+
 # 📦 FMCG Promotion Effectiveness Analysis
 
 This project analyzes a retail dataset to explore how product categories and discounts affect profit. The goal is to uncover whether high discounts hurt profitability and which product lines are most efficient.
