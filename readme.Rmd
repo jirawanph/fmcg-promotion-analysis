@@ -1,5 +1,3 @@
-https://jirawanph.github.io/fmcg-promotion-analysis/
-
 # 📦 FMCG Promotion Effectiveness Analysis
 
 This project analyzes a retail dataset to explore how product categories and discounts affect profit. The goal is to uncover whether high discounts hurt profitability and which product lines are most efficient.
@@ -10,7 +8,7 @@ This project analyzes a retail dataset to explore how product categories and dis
 
 1. Which sub-categories are most/least profitable?
 2. How do discounts influence profit margin?
-3. Are there patterns that could help reduce unnecessary discounting?
+3. Can we predict profitability using machine learning?
 
 ---
 
@@ -20,6 +18,10 @@ This project analyzes a retail dataset to explore how product categories and dis
 - Engineered metrics: profit margin, average discount
 - Grouped data by sub-category for financial performance
 - Visualized profit margin and discount trends
+- Built a logistic regression model to classify profitable transactions
+
+> 📌 Note: Use `encoding='latin-1'` when loading CSV in Python:  
+> `df = pd.read_csv('Sample - Superstore.csv', encoding='latin-1')`
 
 ---
 
@@ -31,23 +33,38 @@ This project analyzes a retail dataset to explore how product categories and dis
 
 ---
 
+## 🤖 Machine Learning Summary
+
+A logistic regression model was trained to classify whether a transaction was profitable (`Profit > 0`).
+
+- **Accuracy:** 94%  
+- **Precision (Class 1 - Profitable):** 0.95  
+- **Recall (Class 1 - Profitable):** 0.98  
+- **F1-score:** 0.96
+
+The model performs exceptionally well at identifying profitable transactions, with a minor tradeoff in false positives for non-profitable ones.
+
+---
+
 ## 🛠 Tools Used
 
-- **Language**: R
-- **Libraries**: dplyr, ggplot2, lubridate, readr, scales
-- **Format**: R Markdown (`.Rmd`) → HTML
+- **Languages:** R (EDA), Python (ML)
+- **Libraries:** dplyr, ggplot2, pandas, scikit-learn
+- **Format:** R Markdown (`.Rmd`) → HTML, Colab Notebook (`.ipynb`)
 
 ---
 
 ## 📁 Files
 
-- `fmcg_discount_profit_eda.Rmd` – full analysis notebook
+- `fmcg_discount_profit_eda.Rmd` – full EDA notebook (R)
 - `fmcg_discount_profit_eda.html` – exported report
+- `fmcg_ml_classification.ipynb` – machine learning notebook (Python)
 - `README.md` – project overview
 
 ---
 
 ## 🚀 Next Steps
 
-- Expand this project with predictive modeling in Python (e.g., regression or classification)
-- Build a dashboard version in Power BI or Looker Studio
+- Visualize feature importance for model interpretability
+- Write LinkedIn post to showcase both EDA and ML work
+- Expand model with tree-based algorithms (e.g., Random Forest, XGBoost)
